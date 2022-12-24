@@ -5,7 +5,7 @@
 }
 
 body{
-    background-image: url(images/pexels-andre-furtado-1162251.jpg);
+    background-image: url("/images/pexels-andre-furtado-1162251.jpg");
     background-size: 100% 100%;
     display: flex;
     justify-content: center;
@@ -16,14 +16,15 @@ body{
 .card{
     background: black;
     opacity: 0.75;
-    width:450px;
-    height: 275px;
+    width: 420px;
+    height: 250px;
+    padding: 30px;
     border-radius: 45px;
 }
 
 .search-wrapper{
     max-width: 420px;
-    margin: 50px auto 10px auto;
+    margin: 0px auto 15px auto;
     height:55px;
 }
 
@@ -31,7 +32,7 @@ body{
     position: relative;
     background: white;
     width: 100%;
-    border-radius: 12px;
+    border-radius: 15px;
 }
 
 .search-input input{
@@ -39,7 +40,7 @@ body{
     width: 100%;
     outline: none;
     border: none;
-    border-radius: 12px;
+    border-radius: 15px;
     padding: 0 60px 0 20px;
     font-size: 18px;
     box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.1);
@@ -68,7 +69,6 @@ body{
     padding: 10px 8px;
     opacity: 1;
     pointer-events: auto; 
-
 }
 
 .search-box li{
@@ -78,7 +78,6 @@ body{
     cursor: default;
     border-radius: 3px;
     display: none;
-
 }
 
 .search-box li:hover{
@@ -87,10 +86,8 @@ body{
 
 .search-input.active .search-box li{
     display: block;
-
 }
 
 .weather-wrapper{
     color:white;
-    padding: 1em;
 }

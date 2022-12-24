@@ -22,7 +22,7 @@ async function searchLocations(input) {
 outputHTML = data => {
     searchWrapper.classList.add("active");
     tab = [];
-    const html = data.map(match =>`<li>${match.name} (LAT: ${match.latitude} | LON: ${match.longitude})</li>`
+    const html = data.map(match =>`<li>${match.name} (${match.admin1} | ${match.country_code})</li>`
     ).join("");
     searchBox.innerHTML = html;
     var items = searchBox.querySelectorAll("li");
