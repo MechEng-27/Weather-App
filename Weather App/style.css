@@ -17,7 +17,7 @@ body{
     background: black;
     opacity: 0.75;
     width: 420px;
-    height: 275px;
+    height: 300px;
     padding: 30px;
     border-radius: 45px;
 }
@@ -88,9 +88,39 @@ body{
     display: block;
 }
 
-.weather-wrapper{
+.weather-location-wrapper{
     color:white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
+
+.condition-temp-wrapper{
+    color:white;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.condition-description-wrapper{
+    color:white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.wind-humidity-wrapper{
+    color:white;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.weather-location-wrapper, .condition-temp-wrapper, 
+.condition-description-wrapper, .wind-humidity-wrapper{
+    margin-bottom: 20px;
+}
+
 
 .weather-icons{
     color: white;

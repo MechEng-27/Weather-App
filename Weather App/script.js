@@ -3,7 +3,10 @@
 const searchWrapper = document.querySelector(".search-input");
 const inputBox = searchWrapper.querySelector("#input");
 const searchBox = searchWrapper.querySelector(".search-box");
-const weatherBox = document.querySelector(".weather-wrapper");
+const weatherLocation = document.querySelector(".weather-location-wrapper");
+const conditionTemp = document.querySelector(".condition-temp-wrapper");
+const conditionDesc = document.querySelector(".condition-description-wrapper");
+const windHumidity = document.querySelector(".wind-humidity-wrapper");
 
 // current conditions and icon dictionary
 const condition = {
@@ -53,6 +56,7 @@ async function searchLocations(input) {
 
 // show search sugguestions and send selection to get weather function
 outputHTML = data => {
+    console.log(data);
     searchWrapper.classList.add("active");
     tab = [];
     const html = data.map(match =>`<li>${match.name} (${match.admin1} | ${match.country_code})</li>`
@@ -79,19 +83,26 @@ async function getWeather (name,lat,lon){
     let tempUnit = ('temperature_unit=fahrenheit');
     let windUnit = ('windspeed_unit=mph');
     let curWeather = ('current_weather=true');
+    let humidity = ('relativehumidity_2m')
     inputBox.value = ("");
     searchBox.innerHTML= ("");
     searchWrapper.classList.remove("active");
 
-    let res = await fetch(`${weatherUrl}&${curWeather}&${tempUnit}&${windUnit}&latitude=${lat}&longitude=${lon}`);
+    let res = await fetch(`${weatherUrl}&${curWeather}&${tempUnit}&${windUnit}&latitude=${lat}&longitude=${lon}&hourly=${humidity}`);
     let data = await res.json();
     let iconIndex = (data.current_weather.weathercode);
+    let curTimeIndex = (data.hourly.time.indexOf(data.current_weather.time));
 
     // display weather info
-    weatherBox.innerHTML = (`<h2>Weather in ${name}</h2><br>
-    <h3>Temperature: ${data.current_weather.temperature} &deg;F</h3><br>
-    <h3><i class="${condition[iconIndex].icon}"></i> ${condition[iconIndex].cond}</h3><br>
-    <h3>Wind Speed: ${data.current_weather.windspeed} mph`);
+    weatherLocation.innerHTML = (`<h3>Weather in ${name}</h3>`);
+    conditionTemp.innerHTML = (`<h1><i class="${condition[iconIndex].icon}"></i><h1><br>
+    <h1>${data.current_weather.temperature} &deg;F</h1>`);
+    conditionDesc.innerHTML = (`<h4>${condition[iconIndex].cond}</h4>`);
+    windHumidity.innerHTML = (`<h3>Wind Speed: ${data.current_weather.windspeed} mph</h3><br>
+    <h3>Humidity: ${data.hourly.relativehumidity_2m[curTimeIndex]} %</h3>`);
+
+//     <h3><i class="${condition[iconIndex].icon}"></i> ${condition[iconIndex].cond}</h3><br>
+//     <h3>Wind Speed: ${data.current_weather.windspeed} mph`);
 };
 
 inputBox.addEventListener("input", () => searchLocations(inputBox.value));
