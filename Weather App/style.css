@@ -103,11 +103,12 @@ body{
     justify-content: space-evenly;
 }
 
-.condition-description-wrapper{
+#condition-icon{
     color:white;
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
 }
 
 .wind-humidity-wrapper{

@@ -1,10 +1,12 @@
-
-// search related dom constants
+// dom constants
 const searchWrapper = document.querySelector(".search-input");
 const inputBox = searchWrapper.querySelector("#input");
 const searchBox = searchWrapper.querySelector(".search-box");
 const weatherLocation = document.querySelector(".weather-location-wrapper");
 const conditionTemp = document.querySelector(".condition-temp-wrapper");
+const curIcon = conditionTemp.querySelector("#condition-icon");
+const curDesc = conditionTemp.querySelector("#condition-description");
+const curTemp = conditionTemp.querySelector("#temperature");
 const conditionDesc = document.querySelector(".condition-description-wrapper");
 const windHumidity = document.querySelector(".wind-humidity-wrapper");
 
@@ -95,9 +97,9 @@ async function getWeather (name,lat,lon){
 
     // display weather info
     weatherLocation.innerHTML = (`<h3>Weather in ${name}</h3>`);
-    conditionTemp.innerHTML = (`<h1><i class="${condition[iconIndex].icon}"></i><h1><br>
-    <h1>${data.current_weather.temperature} &deg;F</h1>`);
-    conditionDesc.innerHTML = (`<h4>${condition[iconIndex].cond}</h4>`);
+    curIcon.innerHTML = (`<h1><i class="${condition[iconIndex].icon}"></i></h1>`);
+    curDesc.innerHTML = (`<h4>${condition[iconIndex].cond}</h4>`);
+    curTemp.innerHTML = (`<h1>${data.current_weather.temperature} &deg;F</h1>`)
     windHumidity.innerHTML = (`<h3>Wind Speed: ${data.current_weather.windspeed} mph</h3><br>
     <h3>Humidity: ${data.hourly.relativehumidity_2m[curTimeIndex]} %</h3>`);
 
@@ -106,3 +108,4 @@ async function getWeather (name,lat,lon){
 };
 
 inputBox.addEventListener("input", () => searchLocations(inputBox.value));
+
