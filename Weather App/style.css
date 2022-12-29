@@ -116,13 +116,26 @@ body{
     display: flex;
     align-items: center;
     justify-content: space-evenly;
+    border-top: 2px solid white;
+    padding-top: 10px;
 }
 
-.weather-location-wrapper, .condition-temp-wrapper, 
-.condition-description-wrapper, .wind-humidity-wrapper{
+.wind-speed-wrapper, .wind-direction-wrapper, .humidity-wrapper{
+    color:white;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.weather-location-wrapper, .wind-humidity-wrapper{
     margin-bottom: 20px;
 }
 
+.condition-temp-wrapper{
+    margin-bottom: 10px;
+}
 
 .weather-icons{
     color: white;

@@ -1,14 +1,26 @@
-// dom constants
+// search dom constants
 const searchWrapper = document.querySelector(".search-input");
 const inputBox = searchWrapper.querySelector("#input");
 const searchBox = searchWrapper.querySelector(".search-box");
 const weatherLocation = document.querySelector(".weather-location-wrapper");
+// current condition and temperature dom constants
 const conditionTemp = document.querySelector(".condition-temp-wrapper");
+const conditionDesc = document.querySelector(".condition-description-wrapper");
 const curIcon = conditionTemp.querySelector("#condition-icon");
 const curDesc = conditionTemp.querySelector("#condition-description");
 const curTemp = conditionTemp.querySelector("#temperature");
-const conditionDesc = document.querySelector(".condition-description-wrapper");
+// wind dom constants
 const windHumidity = document.querySelector(".wind-humidity-wrapper");
+const windSpeedWrapper = windHumidity.querySelector(".wind-speed-wrapper");
+const windTitle = windHumidity.querySelector("#wind-speed-title");
+const curWindSpeed = windHumidity.querySelector("#wind-speed");
+const windDirectionWrapper = windHumidity.querySelector("#wind-direction-wrapper");
+const windDirectionTitle = windHumidity.querySelector("#wind-direction-title");
+const windDirection = windHumidity.querySelector("#wind-direction");
+// humidity dom constants
+const HumidityWrapper = document.querySelector(".humidity-wrapper");
+const humidityTitle = windHumidity.querySelector("#humidity-title");
+const curHumidity = windHumidity.querySelector("#humidity");
 
 // current conditions and icon dictionary
 const condition = {
@@ -58,7 +70,6 @@ async function searchLocations(input) {
 
 // show search sugguestions and send selection to get weather function
 outputHTML = data => {
-    console.log(data);
     searchWrapper.classList.add("active");
     tab = [];
     const html = data.map(match =>`<li>${match.name} (${match.admin1} | ${match.country_code})</li>`
@@ -85,26 +96,29 @@ async function getWeather (name,lat,lon){
     let tempUnit = ('temperature_unit=fahrenheit');
     let windUnit = ('windspeed_unit=mph');
     let curWeather = ('current_weather=true');
-    let humidity = ('relativehumidity_2m')
+    let humidity = ('relativehumidity_2m');
+    let windDirection10m = ('winddirection_10m');
     inputBox.value = ("");
     searchBox.innerHTML= ("");
     searchWrapper.classList.remove("active");
 
-    let res = await fetch(`${weatherUrl}&${curWeather}&${tempUnit}&${windUnit}&latitude=${lat}&longitude=${lon}&hourly=${humidity}`);
+    let res = await fetch(`${weatherUrl}&${curWeather}&${tempUnit}&${windUnit}&latitude=${lat}&longitude=${lon}&hourly=${humidity}&${windDirection10m}`);
     let data = await res.json();
     let iconIndex = (data.current_weather.weathercode);
     let curTimeIndex = (data.hourly.time.indexOf(data.current_weather.time));
+    let windAngle = (data.current_weather.winddirection);
 
     // display weather info
     weatherLocation.innerHTML = (`<h3>Weather in ${name}</h3>`);
     curIcon.innerHTML = (`<h1><i class="${condition[iconIndex].icon}"></i></h1>`);
     curDesc.innerHTML = (`<h4>${condition[iconIndex].cond}</h4>`);
-    curTemp.innerHTML = (`<h1>${data.current_weather.temperature} &deg;F</h1>`)
-    windHumidity.innerHTML = (`<h3>Wind Speed: ${data.current_weather.windspeed} mph</h3><br>
-    <h3>Humidity: ${data.hourly.relativehumidity_2m[curTimeIndex]} %</h3>`);
-
-//     <h3><i class="${condition[iconIndex].icon}"></i> ${condition[iconIndex].cond}</h3><br>
-//     <h3>Wind Speed: ${data.current_weather.windspeed} mph`);
+    curTemp.innerHTML = (`<h1>${data.current_weather.temperature} &deg;F</h1>`);
+    windTitle.innerHTML = (`<h4>Wind Speed:</h4>`);
+    curWindSpeed.innerHTML = (`<h4>${data.current_weather.windspeed} mph</h4>`);
+    windDirectionTitle.innerHTML = (`<h4>Wind Direction:</h4>`);
+    windDirection.innerHTML = (`<i class="fa-solid fa-arrow-down fa-rotate-by" style="--fa-rotate-angle:${windAngle}deg;"></i>`);
+    humidityTitle.innerHTML = (`<h4>Humidity:</h4>`);
+    curHumidity.innerHTML = (`<h4>${data.hourly.relativehumidity_2m[curTimeIndex]} %</h4>`);
 };
 
 inputBox.addEventListener("input", () => searchLocations(inputBox.value));
