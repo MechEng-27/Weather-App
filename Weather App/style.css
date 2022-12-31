@@ -18,9 +18,21 @@ body{
     background: black;
     opacity: 0.75;
     width: 420px;
-    height: 290px;
+    height: 280px;
     padding: 30px;
     border-radius: 45px;
+}
+
+.card h1{
+    font-size: 35px;
+}
+
+.card h2{
+    font-size: 16px;
+}
+
+.card p{
+    font-size: 12px;
 }
 
 .search-wrapper{
@@ -103,12 +115,17 @@ body{
     justify-content: space-evenly;
 }
 
-#condition-icon{
+.condition-temp-wrapper i{
+    font-size: 35px;
+}
+
+.condition-icon-wrapper{
     color:white;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    gap: 5px;
 }
 
 .wind-humidity-wrapper{
@@ -117,6 +134,10 @@ body{
     align-items: center;
     justify-content: space-evenly;
     padding-top: 10px;
+}
+
+.wind-humidity-wrapper i{
+    font-size: 12px;
 }
 
 .wind-humidity-wrapper.render{
@@ -130,6 +151,7 @@ body{
     text-align: center;
     justify-content: center;
     flex-direction: column;
+    gap: 5px;
 }
 
 .weather-location-wrapper, .wind-humidity-wrapper{

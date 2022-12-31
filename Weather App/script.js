@@ -112,16 +112,16 @@ async function getWeather (name,lat,lon){
 
     // render weather info
     windHumidity.classList.add("render");
-    weatherLocation.innerHTML = (`<h3>Weather in ${name}</h3>`);
-    curIcon.innerHTML = (`<h1><i class="${condition[iconIndex].icon}"></i></h1>`);
-    curDesc.innerHTML = (`<h4>${condition[iconIndex].cond}</h4>`);
+    weatherLocation.innerHTML = (`<h2>Weather in ${name}</h2>`);
+    curIcon.innerHTML = (`<i class="${condition[iconIndex].icon}"></i>`);
+    curDesc.innerHTML = (`<p>${condition[iconIndex].cond}</p>`);
     curTemp.innerHTML = (`<h1>${Math.round(data.current_weather.temperature)}&deg;F</h1>`);
-    windTitle.innerHTML = (`<h4>Wind Speed:</h4>`);
-    curWindSpeed.innerHTML = (`<h4>${Math.round(data.current_weather.windspeed)} mph</h4>`);
-    windDirectionTitle.innerHTML = (`<h4>Wind Direction:</h4>`);
-    windDirection.innerHTML = (`<i class="fa-solid fa-arrow-down fa-rotate-by" style="--fa-rotate-angle:${windAngle}deg;"></i>`);
-    humidityTitle.innerHTML = (`<h4>Humidity:</h4>`);
-    curHumidity.innerHTML = (`<h4>${data.hourly.relativehumidity_2m[curTimeIndex]} %</h4>`);
+    windTitle.innerHTML = (`<h2>Wind Speed:</h2>`);
+    curWindSpeed.innerHTML = (`<p>${Math.round(data.current_weather.windspeed)} mph</p>`);
+    windDirectionTitle.innerHTML = (`<h2>Wind Direction:</h2>`);
+    windDirection.innerHTML = (`<p><i class="fa-solid fa-arrow-down fa-rotate-by" style="--fa-rotate-angle:${windAngle}deg;"></i></p>`);
+    humidityTitle.innerHTML = (`<h2>Humidity:</h2>`);
+    curHumidity.innerHTML = (`<p>${data.hourly.relativehumidity_2m[curTimeIndex]} %</p>`);
 };
 
 inputBox.addEventListener("input", () => searchLocations(inputBox.value));
