@@ -68,7 +68,7 @@ async function searchLocations(input) {
     };
 };
 
-// show search sugguestions and send selection to get weather function
+// render search sugguestions and send user selection to get weather function
 outputHTML = data => {
     searchWrapper.classList.add("active");
     tab = [];
@@ -90,14 +90,14 @@ outputHTML = data => {
     };
 };
 
-//get weather and display
+//get weather and render
 async function getWeather (name,lat,lon){
     const weatherUrl=("https://api.open-meteo.com/v1/forecast?")
-    const units = ('temperature_unit=fahrenheit&windspeed_unit=mph');
+    const units = ("temperature_unit=fahrenheit&windspeed_unit=mph");
     const curWeather = ("current_weather=true");
     let cords = (`latitude=${lat}&longitude=${lon}`)
-    const humidity = ('relativehumidity_2m');
-    const windDir = ('winddirection_10m');
+    const humidity = ("relativehumidity_2m");
+    const windDir = ("winddirection_10m");
     inputBox.value = ("");
     searchBox.innerHTML= ("");
     searchWrapper.classList.remove("active");
@@ -116,13 +116,13 @@ async function getWeather (name,lat,lon){
     curIcon.innerHTML = (`<i class="${condition[iconIndex].icon}"></i>`);
     curDesc.innerHTML = (`<p>${condition[iconIndex].cond}</p>`);
     curTemp.innerHTML = (`<h1>${Math.round(data.current_weather.temperature)}&deg;F</h1>`);
-    windTitle.innerHTML = (`<h2>Wind Speed:</h2>`);
+    windTitle.innerHTML = ("<h2>Wind Speed:</h2>");
     curWindSpeed.innerHTML = (`<p>${Math.round(data.current_weather.windspeed)} mph</p>`);
-    windDirectionTitle.innerHTML = (`<h2>Wind Direction:</h2>`);
+    windDirectionTitle.innerHTML = ("<h2>Wind Direction:</h2>");
     windDirection.innerHTML = (`<p><i class="fa-solid fa-arrow-down fa-rotate-by" style="--fa-rotate-angle:${windAngle}deg;"></i></p>`);
-    humidityTitle.innerHTML = (`<h2>Humidity:</h2>`);
+    humidityTitle.innerHTML = ("<h2>Humidity:</h2>");
     curHumidity.innerHTML = (`<p>${data.hourly.relativehumidity_2m[curTimeIndex]} %</p>`);
 };
 
+// run script 
 inputBox.addEventListener("input", () => searchLocations(inputBox.value));
-

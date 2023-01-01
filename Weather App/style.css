@@ -14,11 +14,13 @@ body{
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
+/* <-----card-----> */
+
 .card{
     background: black;
     opacity: 0.75;
     width: 420px;
-    height: 280px;
+    height: 270px;
     padding: 30px;
     border-radius: 45px;
 }
@@ -34,6 +36,8 @@ body{
 .card p{
     font-size: 12px;
 }
+
+/* <-----search bar-----> */
 
 .search-wrapper{
     max-width: 420px;
@@ -101,18 +105,24 @@ body{
     display: block;
 }
 
+/* <-----weather location-----> */
+
 .weather-location-wrapper{
     color:white;
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-bottom: 10px;
 }
+
+/* <-----condition and temp-----> */
 
 .condition-temp-wrapper{
     color:white;
     display: flex;
     align-items: center;
     justify-content: space-evenly;
+    margin-bottom: 10px;
 }
 
 .condition-temp-wrapper i{
@@ -128,12 +138,15 @@ body{
     gap: 5px;
 }
 
+/* <-----wind & humidity-----> */
+
 .wind-humidity-wrapper{
     color:white;
     display: flex;
     align-items: center;
     justify-content: space-evenly;
     padding-top: 10px;
+    margin-bottom: 10px;
 }
 
 .wind-humidity-wrapper i{
@@ -152,16 +165,4 @@ body{
     justify-content: center;
     flex-direction: column;
     gap: 5px;
-}
-
-.weather-location-wrapper, .wind-humidity-wrapper{
-    margin-bottom: 20px;
-}
-
-.condition-temp-wrapper{
-    margin-bottom: 10px;
-}
-
-.weather-icons{
-    color: white;
 }
